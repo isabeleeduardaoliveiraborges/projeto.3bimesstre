@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html>
+   <head>
+      <!-- basic -->
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <!-- mobile metas -->
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+      <!-- site metas -->
+      <title>Icecream</title>
+      <meta name="keywords" content="">
+      <meta name="description" content="">
+      <meta name="author" content="">
+      <!-- bootstrap css -->
+      <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
+      <!-- style css -->
+      <link rel="stylesheet" type="text/css" href="css/style.css">
+      <!-- Responsive-->
+      <link rel="stylesheet" href="css/responsive.css">
+      <!-- fevicon -->
+      <link rel="icon" href="images/fevicon.png" type="image/gif"/>
+      <!-- font css -->
+      <link href="https://fonts.googleapis.com/css?family=Roboto:400,500,700&display=swap" rel="stylesheet">
+      <!-- Scrollbar Custom CSS -->
+      <link rel="stylesheet" href="css/jquery.mCustomScrollbar.min.css">
+      <!-- Tweaks for older IEs-->
+      <link rel="stylesheet" href="https://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css">
+      
+      <!-- CSS do Carrinho SIMPLIFICADO -->
+      <style>
+         .cart-icon {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: #fff;
+            border-radius: 50%;
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            cursor: pointer;
+            z-index: 1000;
+            border: 2px solid #333;
+         }
+         
+         .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: red;
+            color: white;
+            border-radius: 50%;
+            width: 25px;
+            height: 25px;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+         }
+         
+         .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -400px;
+            width: 350px;
+            height: 100vh;
+            background: white;
+            box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+            transition: right 0.3s ease;
+            z-index: 999;
+            padding: 20px;
+            overflow-y: auto;
+         }
+         
+         .cart-sidebar.active {
+            right: 0;
+         }
+         
+         .cart-item {
+            border-bottom: 1px solid #eee;
+            padding: 10px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+         }
+         
+         .close-cart {
+            background: none;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            float: right;
+         }
+      </style>
+   </head>
+   <body>
+      <div class="header_section header_bg">
+         <div class="container">
+            <nav class="navbar navbar-expand-lg navbar-light bg-light">
+               <a class="navbar-brand"href="index.html"><img src="images/logo.png"></a>
+               <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                  <ul class="navbar-nav ml-auto">
+                     <li class="nav-item active">
+                        <a class="nav-link" href="index.html">Home</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="about.html">About</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="icecream.html">Icecream</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="services.html">Services</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="blog.html">Blog</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" href="contact.html">Contact Us</a>
+                     </li>
+                  </ul>
+                  <form class="form-inline my-2 my-lg-0">
+                     <div class="login_bt"><a href="#">Login <span style="color: #222222;"><i class="fa fa-user" aria-hidden="true"></i></span></a></div>
+                     <div class="fa fa-search form-control-feedback"></div>
+                  </form>
+               </div>
+            </nav>
+         </div>
+      </div>
+
+      <!-- Ícone do Carrinho SIMPLIFICADO -->
+      <div class="cart-icon" onclick="toggleCart()">
+         <i class="fa fa-shopping-cart"></i>
+         <span class="cart-count">0</span>
+      </div>
+
+      <!-- Sidebar do Carrinho SIMPLIFICADO -->
+      <div class="cart-sidebar">
+         <button class="close-cart" onclick="toggleCart()">×</button>
+         <h3>Seu Carrinho</h3>
+         <div class="cart-items">
+            <p>Carrinho vazio</p>
+         </div>
+         <div class="cart-total">
+            <strong>Total: $<span class="total-price">0.00</span></strong>
+         </div>
+         <button onclick="checkout()" style="width:100%; padding:10px; background:#28a745; color:white; border:none; margin-top:20px;">Finalizar Compra</button>
+      </div>
+
+      <!-- cream sectuion start -->
+      <div class="cream_section layout_padding">
+         <div class="container">
+            <div class="row">
+               <div class="col-md-12">
+                  <h1 class="cream_taital">Our Featured Ice Cream</h1>
+                  <p class="cream_text">tempor incididunt ut labore et dolore magna aliqua</p>
+               </div>
+            </div>
+            <div class="cream_section_2">
+               <div class="row">
+                  <div class="col-md-4">
+                     <div class="cream_box">
+                        <div class="cream_img"><img src="images/img-1.png"></div>
+                        <div class="price_text">$10</div>
+                        <h6 class="strawberry_text">Strawberry Ice Cream</h6>
+                        <div class="cart_bt"><a href="#" onclick="addToCart('Strawberry Ice Cream', 10)">Add To Cart</a></div>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="cream_box">
+                        <div class="cream_img"><img src="images/img-2.png"></div>
+                        <div class="price_text">$10</div>
+                        <h6 class="strawberry_text">Chocolate Ice Cream</h6>
+                        <div class="cart_bt"><a href="#" onclick="addToCart('Chocolate Ice Cream', 10)">Add To Cart</a></div>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="cream_box">
+                        <div class="cream_img"><img src="images/img-1.png"></div>
+                        <div class="price_text">$10</div>
+                        <h6 class="strawberry_text">Vanilla Ice Cream</h6>
+                        <div class="cart_bt"><a href="#" onclick="addToCart('Vanilla Ice Cream', 10)">Add To Cart</a></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="cream_section_2">
+               <div class="row">
+                  <div class="col-md-4">
+                     <div class="cream_box">
+                        <div class="cream_img"><img src="images/img-3.png"></div>
+                        <div class="price_text">$12</div>
+                        <h6 class="strawberry_text">Mint Chocolate Chip</h6>
+                        <div class="cart_bt"><a href="#" onclick="addToCart('Mint Chocolate Chip', 12)">Add To Cart</a></div>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="cream_box">
+                        <div class="cream_img"><img src="images/img-4.png"></div>
+                        <div class="price_text">$11</div>
+                        <h6 class="strawberry_text">Cookies and Cream</h6>
+                        <div class="cart_bt"><a href="#" onclick="addToCart('Cookies and Cream', 11)">Add To Cart</a></div>
+                     </div>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="cream_box">
+                        <div class="cream_img"><img src="images/img-5.png"></div>
+                        <div class="price_text">$13</div>
+                        <h6 class="strawberry_text">Rocky Road</h6>
+                        <div class="cart_bt"><a href="#" onclick="addToCart('Rocky Road', 13)">Add To Cart</a></div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="seemore_bt"><a href="#">See More</a></div>
+         </div>
+      </div>
+
+      <!-- copyright section start -->
+      <div class="copyright_section margin_top90">
+         <div class="container">
+            <p class="copyright_text">2020 All Rights Reserved. Design by <a href="https://html.design">Free Html Templates</a> Distribution by <a href="https://themewagon.com">ThemeWagon</a></p>
+         </div>
+      </div>
+
+      <!-- Javascript files-->
+      <script src="js/jquery.min.js"></script>
+      <script src="js/popper.min.js"></script>
+      <script src="js/bootstrap.bundle.min.js"></script>
+      <script src="js/jquery-3.0.0.min.js"></script>
+      <script src="js/plugin.js"></script>
+      <script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+      <script src="js/custom.js"></script>
+
+      <!-- JavaScript do Carrinho SIMPLIFICADO -->
+      <script>
+         let cart = [];
+         let totalPrice = 0;
+
+         function addToCart(name, price) {
+             event.preventDefault();
+             
+             // Verificar se o item já está no carrinho
+             const existingItem = cart.find(item => item.name === name);
+             
+             if (existingItem) {
+                 existingItem.quantity += 1;
+             } else {
+                 cart.push({
+                     name: name,
+                     price: price,
+                     quantity: 1
+                 });
+             }
+             
+             updateCart();
+             alert(name + " adicionado ao carrinho!");
+         }
+
+         function removeFromCart(index) {
+             cart.splice(index, 1);
+             updateCart();
+         }
+
+         function updateQuantity(index, change) {
+             cart[index].quantity += change;
+             
+             if (cart[index].quantity <= 0) {
+                 removeFromCart(index);
+             } else {
+                 updateCart();
+             }
+         }
+
+         function updateCart() {
+             const cartItems = document.querySelector('.cart-items');
+             const cartCount = document.querySelector('.cart-count');
+             const totalPriceElement = document.querySelector('.total-price');
+             
+             // Atualizar contador
+             const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+             cartCount.textContent = totalItems;
+             
+             // Atualizar lista de itens
+             cartItems.innerHTML = '';
+             totalPrice = 0;
+             
+             if (cart.length === 0) {
+                 cartItems.innerHTML = '<p>Carrinho vazio</p>';
+             } else {
+                 cart.forEach((item, index) => {
+                     totalPrice += item.price * item.quantity;
+                     
+                     const cartItem = document.createElement('div');
+                     cartItem.className = 'cart-item';
+                     cartItem.innerHTML = `
+                         <div>
+                             <strong>${item.name}</strong><br>
+                             $${item.price} x ${item.quantity}
+                         </div>
+                         <div>
+                             <button onclick="updateQuantity(${index}, -1)">-</button>
+                             <button onclick="updateQuantity(${index}, 1)">+</button>
+                             <button onclick="removeFromCart(${index})">×</button>
+                         </div>
+                     `;
+                     cartItems.appendChild(cartItem);
+                 });
+             }
+             
+             // Atualizar preço total
+             totalPriceElement.textContent = totalPrice.toFixed(2);
+         }
+
+         function toggleCart() {
+             const cartSidebar = document.querySelector('.cart-sidebar');
+             cartSidebar.classList.toggle('active');
+         }
+
+         function checkout() {
+             if (cart.length === 0) {
+                 alert('Seu carrinho está vazio!');
+                 return;
+             }
+             
+             // Simular processamento
+             let orderSummary = "Resumo do Pedido:\n\n";
+             cart.forEach(item => {
+                 orderSummary += `${item.name} - $${item.price} x ${item.quantity} = $${(item.price * item.quantity).toFixed(2)}\n`;
+             });
+             orderSummary += `\nTotal: $${totalPrice.toFixed(2)}`;
+             
+             alert(orderSummary);
+             
+             // Limpar carrinho após compra
+             cart = [];
+             updateCart();
+             toggleCart();
+         }
+
+         // Inicializar carrinho
+         document.addEventListener('DOMContentLoaded', function() {
+             updateCart();
+         });
+      </script>
+   </body>
+</html>
